@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,9 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|required'
+            'products' => '',
+            'user_id' => 'integer',
+            'order_status_id' => ''
         ];
     }
 }

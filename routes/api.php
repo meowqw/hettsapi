@@ -22,6 +22,11 @@ Route::group(['namespace'=> 'Product'], function () {
     Route::get('/products', 'IndexController');
 });
 
+Route::group(['namespace'=> 'Order'], function () {
+//    Route::get('/orders', 'IndexController');
+    Route::post('/orders', 'StoreController');
+});
+
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         // Below mention routes are public, user can access those without any restriction.

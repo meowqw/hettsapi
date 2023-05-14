@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Resources\Order\OrderResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,7 @@ class AuthController extends Controller
     {
         $v = Validator::make($request->all(), [
             'name' => 'required|min:3',
+            'surname' => 'required|min:3',
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|confirmed',
         ]);
@@ -25,6 +27,7 @@ class AuthController extends Controller
         }
         $user = new User();
         $user->name = $request->name;
+        $user->surname = $request->surname;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
@@ -58,6 +61,9 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         $user = User::find(Auth::user()->id);
+
+        $user['orders'] = OrderResource::collection($user->orders()->get());
+
         return response()->json([
             'status' => 'success',
             'data' => $user
