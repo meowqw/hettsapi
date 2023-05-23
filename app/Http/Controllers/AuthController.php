@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Resources\LegalInformation\LegalInformationResource;
 use App\Http\Resources\Order\OrderResource;
+use App\Http\Resources\PersonalInformation\PersonalInformationResource;
+use App\Models\PersonalInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -63,6 +66,18 @@ class AuthController extends Controller
         $user = User::find(Auth::user()->id);
 
         $user['orders'] = OrderResource::collection($user->orders()->get());
+//        dd($user->personal()->get());
+        if (count($user->personal()->get())) {
+            $user['personal'] = $user->personal()->get();
+        } else {
+            $user['personal'] = null;
+        }
+
+        if (count($user->legal()->get())) {
+            $user['legal'] = $user->legal()->get();
+        } else {
+            $user['legal'] = null;
+        }
 
         return response()->json([
             'status' => 'success',

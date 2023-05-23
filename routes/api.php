@@ -27,6 +27,19 @@ Route::group(['namespace' => 'Order'], function () {
     Route::post('/orders', 'StoreController');
 });
 
+Route::group(['namespace' => 'Personal', 'prefix' => 'personal'], function () {
+    Route::post('/', 'PersonalInformationController@store');
+
+
+    Route::patch('/{id}', 'PersonalInformationController@update');
+
+});
+
+Route::group(['namespace' => 'Legal', 'prefix' => 'legal'], function () {
+    Route::post('/', 'LegalInformationController@store');
+
+    Route::patch('/{id}', 'LegalInformationController@update');
+});
 
 Route::prefix('auth')->group(function () {
     // Below mention routes are public, user can access those without any restriction.
