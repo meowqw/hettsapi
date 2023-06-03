@@ -42,19 +42,19 @@ class ProductFilter extends AbstractFilter
 
     public function categoryId(Builder $builder, $value)
     {
-        $builder->where('category_id', $value);
+        $builder->whereIn('category_id', explode(',', $value));
 
     }
 
     public function sizeId(Builder $builder, $value)
     {
-        $builder->where('size_id', $value);
+        $builder->where('size_id', explode(',', $value));
 
     }
 
     public function colorId(Builder $builder, $value)
     {
-        $builder->where('color_id', $value);
+        $builder->where('color_id', explode(',', $value));
 
     }
 }

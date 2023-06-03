@@ -29,15 +29,12 @@ Route::group(['namespace' => 'Order'], function () {
 
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal'], function () {
     Route::post('/', 'PersonalInformationController@store');
-
-
     Route::patch('/{id}', 'PersonalInformationController@update');
 
 });
 
 Route::group(['namespace' => 'Legal', 'prefix' => 'legal'], function () {
     Route::post('/', 'LegalInformationController@store');
-
     Route::patch('/{id}', 'LegalInformationController@update');
 });
 

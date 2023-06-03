@@ -24,11 +24,11 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'integer',
-            'size_id' => 'integer',
-            'color_id' => 'integer',
-            'price_from' => 'integer',
-            'price_to' => 'integer'
+            'category_id' => 'string',
+            'size_id' => 'string',
+            'color_id' => 'string',
+            'price_from' => 'string',
+            'price_to' => 'string'
         ];
     }
 }
