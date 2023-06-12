@@ -24,7 +24,9 @@ class ProductResource extends JsonResource
             'image' => $this->image,
             'color' => new ColorResource($this->color),
             'size' => new SizeResource($this->size),
-            'category' => new CategoryResource($this->category)
+            'category' => new CategoryResource($this->category),
+            'description' => $this->description,
+            'characteristics' => $this->characteristics
         ];
     }
 }
